@@ -1,11 +1,13 @@
 module App exposing (main)
 
 import Model exposing (Model, model)
+import Decode exposing (decodeLobby)
 
 import Html exposing (Html, button, div, text, textarea)
 import Html.App as App
 import Html.Attributes exposing (rows, cols, style)
 import Html.Events exposing (onClick, onInput)
+import Json.Encode exposing (object, string)
 
 -- Based on https://robots.thoughtbot.com/decoding-json-structures-with-elm
 
@@ -22,7 +24,7 @@ update msg model =
     UpdateJson newJson ->
       { model | json = newJson }
     Parse ->
-      model
+      { model | lobby = decodeLobby model.json }
 
 -- VIEW
 

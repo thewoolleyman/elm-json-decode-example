@@ -1,4 +1,4 @@
-module Model exposing (Model, model)
+module Model exposing (..)
 
 type alias Model =
   { json : String
@@ -7,7 +7,7 @@ type alias Model =
 
 model : Model
 model =
-  { json = "{\n}"
+  { json = "{\n  \"name\": \"Awesome place to meet\"}"
   , lobby = nullLobby
   }
 
