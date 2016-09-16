@@ -1,10 +1,10 @@
 module Decode exposing (decodeEvent)
 
-import Model exposing (Event, nullEvent)
+import Model exposing (..)
 
 import Json.Encode as Json
 import Json.Decode.Extra exposing ((|:))
-import Json.Decode exposing (Decoder, decodeString, succeed, string, (:=))
+import Json.Decode exposing (Decoder, decodeString, succeed, string, object1, andThen, (:=))
 
 -- If json is coming from a port, take a Json.Decode.Value instead of String and use decodeValue instead of decodeString
 decodeEvent : String -> Event
@@ -17,3 +17,4 @@ event : Decoder Event
 event =
   succeed Event
     |: ("eventType" := string)
+    |: ("data" := string)

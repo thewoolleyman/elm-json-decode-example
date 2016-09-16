@@ -7,12 +7,17 @@ type alias Model =
 
 model : Model
 model =
-  { json = "{\n  \"eventType\": \"TextualEntityUpdated\"\n}"
+  { json = "{\n  \"eventType\": \"TextualEntityUpdated\",\n  \"data\": \"my text\"\n}"
   , event = nullEvent
   }
 
 type alias Event =
-  { eventType: String }
+  { eventType : String
+  , data : String
+  }
 
 nullEvent : Event
-nullEvent = { eventType = "" }
+nullEvent =
+  { eventType = ""
+  , data = ""
+  }
