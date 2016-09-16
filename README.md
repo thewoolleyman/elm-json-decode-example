@@ -5,6 +5,7 @@
 * https://robots.thoughtbot.com/decoding-json-structures-with-elm
 * http://package.elm-lang.org/packages/elm-lang/core/4.0.5/Json-Decode
 * http://package.elm-lang.org/packages/elm-community/json-extra
+* http://noredink.github.io/json-to-elm/
 
 `elm-package.json` entry to use json-extra package:
 
