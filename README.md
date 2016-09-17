@@ -32,7 +32,10 @@
 ### Running Apps
 
 * Navigate to `App.elm`
+* Click `parse` to parse the JSON in the textarea to an Elm `Event` type
+* Try modifying the JSON and re-parsing.
 
 ### Running Tests
 
 * Navigate to `TestSuite.elm`
+* They should pass :)

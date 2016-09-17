@@ -15,12 +15,16 @@ decodeEvent eventPayload =
 
 eventDataDecoder : Decoder EventData
 eventDataDecoder =
-    ("eventType" := string) `andThen` decodeEventData
+  ("eventType" := string) `andThen` decodeEventData
 
 decodeEventData :  String -> Decoder EventData
 decodeEventData eventType =
   case eventType of
     "TextualEntityUpdated" ->
-      object1 TextualEntityUpdatedEventData ( "data" := string )
+      textualEntityUpdatedEventDataDecoder
     _ ->
       fail ("Invalid eventType: '" ++ eventType ++ "'")
+
+textualEntityUpdatedEventDataDecoder : Decoder EventData
+textualEntityUpdatedEventDataDecoder =
+  object1 TextualEntityUpdatedEventData ( "data" := string )
