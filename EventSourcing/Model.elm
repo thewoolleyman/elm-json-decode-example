@@ -13,6 +13,7 @@ model =
 
 sampleJson : String
 sampleJson = """{
+  "eventId": "abc123",
   "eventType": "TextualEntityUpdated",
   "data": "my text"
 }
@@ -20,12 +21,14 @@ sampleJson = """{
 
 
 type alias Event =
-  { data : EventData
+  { eventId : String
+  , data : EventData
   }
 
 nullEvent : Event
 nullEvent =
-  { data = NullEventData
+  { eventId = ""
+  , data = NullEventData
   }
 
 type EventData
