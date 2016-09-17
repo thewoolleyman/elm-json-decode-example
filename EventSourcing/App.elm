@@ -1,6 +1,6 @@
 module App exposing (main)
 
-import Model exposing (Model, model)
+import Model exposing (Model, initialModel)
 import Decode exposing (decodeEvent)
 
 import Html exposing (Html, button, div, text, textarea)
@@ -12,7 +12,7 @@ import Json.Encode exposing (object, string)
 -- Exploring how to parse a sample of Event Sourcing event payload input
 
 main =
-  App.beginnerProgram { model = model, view = view, update = update }
+  App.beginnerProgram { model = initialModel, view = view, update = update }
 
 -- UPDATE
 

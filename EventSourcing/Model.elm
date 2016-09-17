@@ -5,8 +5,8 @@ type alias Model =
   , event : Event
   }
 
-model : Model
-model =
+initialModel : Model
+initialModel =
   { json = sampleJson
   , event = nullEvent
   }
@@ -29,6 +29,12 @@ nullEvent : Event
 nullEvent =
   { eventId = ""
   , data = NullEventData
+  }
+
+invalidEvent : String -> Event
+invalidEvent errorMessage =
+  { eventId = ""
+  , data = InvalidEventData errorMessage
   }
 
 type EventData

@@ -11,7 +11,7 @@ decodeEvent : String -> Event
 decodeEvent eventPayload =
   case decodeString eventDecoder eventPayload of
     Ok event -> event
-    Err errorMessage -> { eventId = "", data = InvalidEventData errorMessage }
+    Err errorMessage -> invalidEvent errorMessage
 
 eventDecoder : Decoder Event
 eventDecoder =
