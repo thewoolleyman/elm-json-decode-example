@@ -1,7 +1,7 @@
-module App exposing (main)
+module DotsAndBoxes.App exposing (main)
 
-import Model exposing (Model, initialModel)
-import Decode exposing (decodeEvent)
+import DotsAndBoxes.Model exposing (Model, model)
+import DotsAndBoxes.Decode exposing (decodeLobby)
 
 import Html exposing (Html, button, div, text, textarea)
 import Html.App as App
@@ -9,10 +9,10 @@ import Html.Attributes exposing (rows, cols, style)
 import Html.Events exposing (onClick, onInput)
 import Json.Encode exposing (object, string)
 
--- Exploring how to parse a sample of Event Sourcing event payload input
+-- Based on https://robots.thoughtbot.com/decoding-json-structures-with-elm
 
 main =
-  App.beginnerProgram { model = initialModel, view = view, update = update }
+  App.beginnerProgram { model = model, view = view, update = update }
 
 -- UPDATE
 
@@ -24,7 +24,7 @@ update msg model =
     UpdateJson newJson ->
       { model | json = newJson }
     Parse ->
-      { model | event = decodeEvent model.json }
+      { model | lobby = decodeLobby model.json }
 
 -- VIEW
 
@@ -35,7 +35,7 @@ view model =
     , div [] [ textarea [ rows 20, cols 100, onInput UpdateJson ] [ text model.json ]]
     , button [ onClick Parse ] [ text "parse" ]
     , div [ style [("font-weight", "bold"),("margin-top","10px")] ] [ text "Parsed Elm Record:" ]
-    , div [] [ text (toString model.event) ]
+    , div [] [ text (toString model.lobby) ]
     ]
 
 

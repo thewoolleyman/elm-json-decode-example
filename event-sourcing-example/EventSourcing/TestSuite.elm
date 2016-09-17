@@ -1,12 +1,12 @@
-module TestSuite exposing (..)
+module EventSourcing.TestSuite exposing (..)
+
+import EventSourcing.Model exposing (..)
+import EventSourcing.Decode exposing (decodeEvent)
 
 import String
 import Expect
 import Test exposing (..)
 import Test.Runner.Html
-
-import Model exposing (..)
-import Decode exposing (decodeEvent)
 
 main : Program Never
 main =

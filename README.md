@@ -25,18 +25,21 @@
 
 ### Startup
 
-* `cd` to an example subdirectory, e.g. `EventSourcing`
+* `cd` to an example subdirectory, e.g. `event-sourcing-example`
 * `elm-reactor`
 * Open `http://localhost:8000`
+* Navigate to app namespace subdirectory, ,e.g. `EventSourcing`
+* Follow instructions below for Running App or Running Test Suite
 
-### Running Apps
+### Running App
 
 * Navigate to `App.elm`
-* Click `parse` to parse the JSON in the textarea to an Elm `Event` type
-* Try modifying the JSON to have `"eventType": "NumericEntityUpdated"`
+* Event Sourcing Example app usage:
+  * Click `parse` to parse the JSON in the textarea to an Elm `Event` type
+  * Try modifying the JSON to have `"eventType": "NumericEntityUpdated"`
   and `"data": 42`, then re-parsing.
 
-### Running Tests
+### Running Test Suite
 
 * Navigate to `TestSuite.elm`
 * They should pass :)

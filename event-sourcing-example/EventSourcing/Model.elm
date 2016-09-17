@@ -1,4 +1,4 @@
-module Model exposing (..)
+module EventSourcing.Model exposing (..)
 
 type alias Model =
   { json : String

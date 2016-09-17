@@ -1,6 +1,6 @@
-module Decode exposing (decodeEvent)
+module EventSourcing.Decode exposing (decodeEvent)
 
-import Model exposing (..)
+import EventSourcing.Model exposing (..)
 
 import Json.Encode as Json
 import Json.Decode.Extra exposing ((|:))

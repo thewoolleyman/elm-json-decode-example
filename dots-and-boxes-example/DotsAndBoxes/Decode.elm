@@ -1,6 +1,6 @@
-module Decode exposing (decodeLobby)
+module DotsAndBoxes.Decode exposing (decodeLobby)
 
-import Model exposing (Lobby, nullLobby)
+import DotsAndBoxes.Model exposing (Lobby, nullLobby)
 
 import Json.Encode as Json
 import Json.Decode.Extra exposing ((|:))

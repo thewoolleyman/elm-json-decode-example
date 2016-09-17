@@ -1,4 +1,4 @@
-module Model exposing (..)
+module DotsAndBoxes.Model exposing (..)
 
 type alias Model =
   { json : String
@@ -7,7 +7,7 @@ type alias Model =
 
 model : Model
 model =
-  { json = "{\n  \"name\": \"Awesome place to meet\"}"
+  { json = "{\n  \"name\": \"Awesome place to meet\"\n}"
   , lobby = nullLobby
   }
 
