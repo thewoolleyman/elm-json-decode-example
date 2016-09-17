@@ -17,9 +17,10 @@ type alias Event =
 
 nullEvent : Event
 nullEvent =
-  { data = InvalidEventType ""
+  { data = NullEventType
   }
 
 type EventData
   = TextualEntityUpdatedData String
+  | NullEventType
   | InvalidEventType String

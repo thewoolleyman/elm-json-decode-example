@@ -11,7 +11,7 @@ decodeEvent : String -> Event
 decodeEvent payload =
   case decodeString eventData payload of
     Ok eventData -> { data = eventData }
-    Err message -> nullEvent
+    Err errorMessage -> { data = InvalidEventType errorMessage }
 
 eventData : Decoder EventData
 eventData =
@@ -23,5 +23,5 @@ decodeData eventType =
     "TextualEntityUpdated" ->
       object1 TextualEntityUpdatedData ( "data" := string )
     _ ->
-      fail ("Invalid eventType: " ++ eventType ++ "")
+      fail ("Invalid eventType: '" ++ eventType ++ "'")
 
