@@ -11,4 +11,16 @@
 
 `"elm-community/json-extra": "1.1.0 <= v < 2.0.0"`
 
+## Running
 
+* `cd` to an example subdirectory, e.g. `EventSourcing`
+* `elm-reactor`
+* Open `http://localhost:8000`
+
+### Running Apps
+
+* Navigate to `App.elm`
+
+### Running Tests
+
+* Navigate to `TestSuite.elm`
