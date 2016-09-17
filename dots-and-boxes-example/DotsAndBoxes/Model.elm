@@ -1,4 +1,4 @@
-module DotsAndBoxes.Model exposing (..)
+module DotsAndBoxes.Model exposing (Model, model, Lobby, nullLobby)
 
 type alias Model =
   { json : String

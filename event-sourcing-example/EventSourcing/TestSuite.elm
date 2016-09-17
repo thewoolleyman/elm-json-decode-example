@@ -40,7 +40,7 @@ testTextualEntityParsing =
                 decodeEvent textualEntityUpdatedJson
                     |> Expect.equal
                       { eventId = "abc123"
-                      , data = TextualEntityUpdatedEventData "my text"
+                      , data = textualEntityUpdatedEventData "my text"
                       }
         ]
 
@@ -52,6 +52,6 @@ testNumericEntityParsing =
                 decodeEvent numericEntityUpdatedJson
                     |> Expect.equal
                       { eventId = "def456"
-                      , data = NumericEntityUpdatedEventData 42
+                      , data = numericEntityUpdatedEventData 42
                       }
         ]

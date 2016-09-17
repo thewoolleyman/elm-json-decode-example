@@ -1,6 +1,13 @@
 module EventSourcing.Decode exposing (decodeEvent)
 
-import EventSourcing.Model exposing (..)
+import EventSourcing.Model exposing
+  ( Event
+  , textualEntityUpdatedEventData
+  , numericEntityUpdatedEventData
+  , invalidEvent
+  , EventData
+  )
+
 
 import Json.Encode as Json
 import Json.Decode.Extra exposing ((|:))
@@ -35,8 +42,8 @@ decodeEventData eventType =
 
 textualEntityUpdatedEventDataDecoder : Decoder EventData
 textualEntityUpdatedEventDataDecoder =
-  object1 TextualEntityUpdatedEventData ( "data" := string )
+  object1 textualEntityUpdatedEventData ( "data" := string )
 
 numericEntityUpdatedEventDataDecoder : Decoder EventData
 numericEntityUpdatedEventDataDecoder =
-  object1 NumericEntityUpdatedEventData ( "data" := int )
+  object1 numericEntityUpdatedEventData ( "data" := int )
