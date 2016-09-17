@@ -17,10 +17,10 @@ type alias Event =
 
 nullEvent : Event
 nullEvent =
-  { data = NullEventType
+  { data = NullEventData
   }
 
 type EventData
-  = TextualEntityUpdatedData String
-  | NullEventType
-  | InvalidEventType String
+  = TextualEntityUpdatedEventData String
+  | NullEventData
+  | InvalidEventData String
