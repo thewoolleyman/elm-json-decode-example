@@ -8,10 +8,10 @@ import Test.Runner.Html
 import Model exposing (..)
 import Decode exposing (decodeEvent)
 
-
 main : Program Never
 main =
     [ testTextualEntityParsing
+    , testNumericEntityParsing
     ]
         |> concat
         |> Test.Runner.Html.run
@@ -23,6 +23,12 @@ textualEntityUpdatedJson = """{
 }
 """
 
+numericEntityUpdatedJson : String
+numericEntityUpdatedJson = """{
+  "eventType": "NumericEntityUpdated",
+  "data": 42
+}
+"""
 
 testTextualEntityParsing : Test
 testTextualEntityParsing =
@@ -33,5 +39,17 @@ testTextualEntityParsing =
                     |> Expect.equal
                       {
                         data = TextualEntityUpdatedEventData "my text"
+                      }
+        ]
+
+testNumericEntityParsing : Test
+testNumericEntityParsing =
+    describe "NumericEntity"
+        [ test "parses" <|
+            \() ->
+                decodeEvent numericEntityUpdatedJson
+                    |> Expect.equal
+                      {
+                        data = NumericEntityUpdatedEventData 42
                       }
         ]

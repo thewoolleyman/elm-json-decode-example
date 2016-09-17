@@ -30,5 +30,6 @@ nullEvent =
 
 type EventData
   = TextualEntityUpdatedEventData String
+  | NumericEntityUpdatedEventData Int
   | NullEventData
   | InvalidEventData String
