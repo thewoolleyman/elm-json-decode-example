@@ -12,12 +12,14 @@ model =
   }
 
 type alias Event =
-  { eventType : String
-  , data : String
+  { data : EventData
   }
 
 nullEvent : Event
 nullEvent =
-  { eventType = ""
-  , data = ""
+  { data = InvalidEventType ""
   }
+
+type EventData
+  = TextualEntityUpdatedData String
+  | InvalidEventType String
