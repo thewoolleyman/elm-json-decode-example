@@ -37,26 +37,26 @@ type alias Event =
 nullEvent : Event
 nullEvent =
   { eventId = ""
-  , data = NullEventData
+  , data = Null
   }
 
 invalidEvent : String -> Event
 invalidEvent errorMessage =
   { eventId = ""
-  , data = InvalidEventData errorMessage
+  , data = Invalid errorMessage
   }
 
 type EventData
-  = TextualEntityUpdatedEventData String
-  | NumericEntityUpdatedEventData Int
-  | NullEventData
-  | InvalidEventData String
+  = TextualEntityUpdated String
+  | NumericEntityUpdated Int
+  | Null
+  | Invalid String
 
 -- Follow http://package.elm-lang.org/help/design-guidelines#keep-tags-and-record-constructors-secret
 
 textualEntityUpdatedEventData : String -> EventData
-textualEntityUpdatedEventData text = TextualEntityUpdatedEventData text
+textualEntityUpdatedEventData text = TextualEntityUpdated text
 
 numericEntityUpdatedEventData : Int -> EventData
-numericEntityUpdatedEventData integer = NumericEntityUpdatedEventData integer
+numericEntityUpdatedEventData integer = NumericEntityUpdated integer
 
