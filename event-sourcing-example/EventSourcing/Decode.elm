@@ -45,10 +45,14 @@ eventDataDecoderForEventType eventType =
     _ ->
       fail ("Invalid eventType: '" ++ eventType ++ "'")
 
+-- Note that this uses the standard Elm Json.Decode library approach using `object2` and `:=`
 textualEntityUpdatedEventDataDecoder : Decoder EventData
 textualEntityUpdatedEventDataDecoder =
   object2 textualEntityUpdatedEventData ( "entityId" := string ) ( "text" := string )
 
+-- Note that this uses the elm-community/json-extra Json.Decode.Extra library approach using `succeed` and `|=`
 numericEntityUpdatedEventDataDecoder : Decoder EventData
 numericEntityUpdatedEventDataDecoder =
-  object2 numericEntityUpdatedEventData ( "entityId" := string ) ( "integer" := int )
+  succeed numericEntityUpdatedEventData
+  |: ( "entityId" := string )
+  |: ( "integer" := int )
