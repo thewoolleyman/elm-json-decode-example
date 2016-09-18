@@ -20,7 +20,10 @@ textualEntityUpdatedJson : String
 textualEntityUpdatedJson = """{
   "eventId": "abc123",
   "eventType": "TextualEntityUpdated",
-  "data": "my text"
+  "data": {
+    "entityId": "321cba",
+    "text": "my text"
+  }
 }
 """
 
@@ -28,7 +31,10 @@ numericEntityUpdatedJson : String
 numericEntityUpdatedJson = """{
   "eventId": "def456",
   "eventType": "NumericEntityUpdated",
-  "data": 42
+  "data": {
+    "entityId": "654fed",
+    "integer": 42
+  }
 }
 """
 
@@ -40,7 +46,7 @@ testTextualEntityParsing =
                 decodeEvent textualEntityUpdatedJson
                     |> Expect.equal
                       { eventId = "abc123"
-                      , data = textualEntityUpdatedEventData "my text"
+                      , data = textualEntityUpdatedEventData "321cba" "my text"
                       }
         ]
 
@@ -52,6 +58,6 @@ testNumericEntityParsing =
                 decodeEvent numericEntityUpdatedJson
                     |> Expect.equal
                       { eventId = "def456"
-                      , data = numericEntityUpdatedEventData 42
+                      , data = numericEntityUpdatedEventData "654fed" 42
                       }
         ]

@@ -37,5 +37,3 @@ view model =
     , div [ style [("font-weight", "bold"),("margin-top","10px")] ] [ text "Parsed Elm Record:" ]
     , div [] [ text (toString model.lobby) ]
     ]
-
-

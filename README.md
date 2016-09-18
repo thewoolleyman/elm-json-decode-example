@@ -37,7 +37,7 @@
 * Event Sourcing Example app usage:
   * Click `parse` to parse the JSON in the textarea to an Elm `Event` type
   * Try modifying the JSON to have `"eventType": "NumericEntityUpdated"`
-  and `"data": 42`, then re-parsing.
+  and `"data": {..., "integer": 42}`, then re-parsing.
 
 ### Running Test Suite
 

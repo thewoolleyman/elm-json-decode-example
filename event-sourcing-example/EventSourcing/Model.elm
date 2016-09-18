@@ -7,6 +7,7 @@ module EventSourcing.Model exposing
   , nullEvent
   , invalidEvent
   , EventData
+  , TextualEntityUpdatedEventData
   )
 
 type alias Model =
@@ -24,7 +25,10 @@ sampleJson : String
 sampleJson = """{
   "eventId": "abc123",
   "eventType": "TextualEntityUpdated",
-  "data": "my text"
+  "data": {
+    "entityId": "321cba",
+    "text": "my text"
+  }
 }
 """
 
@@ -47,16 +51,26 @@ invalidEvent errorMessage =
   }
 
 type EventData
-  = TextualEntityUpdated String
-  | NumericEntityUpdated Int
+  = TextualEntityUpdated String String
+  | NumericEntityUpdated String Int
   | Null
   | Invalid String
 
 -- Follow http://package.elm-lang.org/help/design-guidelines#keep-tags-and-record-constructors-secret
 
-textualEntityUpdatedEventData : String -> EventData
-textualEntityUpdatedEventData text = TextualEntityUpdated text
+type alias TextualEntityUpdatedEventData =
+  { entityId : String
+  , text : String
+  }
 
-numericEntityUpdatedEventData : Int -> EventData
-numericEntityUpdatedEventData integer = NumericEntityUpdated integer
+type alias NumericEntityUpdatedEventData =
+  { entityId : String
+  , integer : Int
+  }
+
+textualEntityUpdatedEventData : String -> String -> EventData
+textualEntityUpdatedEventData entityId text = TextualEntityUpdated entityId text
+
+numericEntityUpdatedEventData : String -> Int -> EventData
+numericEntityUpdatedEventData entityId integer = NumericEntityUpdated entityId integer
 

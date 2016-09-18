@@ -6,12 +6,13 @@ import EventSourcing.Model exposing
   , numericEntityUpdatedEventData
   , invalidEvent
   , EventData
+  , TextualEntityUpdatedEventData
   )
 
 
 import Json.Encode as Json
 import Json.Decode.Extra exposing ((|:))
-import Json.Decode exposing (Decoder, decodeString, succeed, fail, string, int, object1, object2, andThen, (:=))
+import Json.Decode exposing (Decoder, decodeString, succeed, fail, string, int, object1, object2, at, andThen, (:=))
 
 -- If json is coming from a port, take a Json.Decode.Value instead of String and use decodeValue instead of decodeString
 decodeEvent : String -> Event
@@ -30,8 +31,12 @@ eventDataDecoder : Decoder EventData
 eventDataDecoder =
   ("eventType" := string) `andThen` decodeEventData
 
-decodeEventData :  String -> Decoder EventData
+decodeEventData : String -> Decoder EventData
 decodeEventData eventType =
+ at ["data"] <| eventDataDecoderForEventType eventType
+
+eventDataDecoderForEventType : String -> Decoder EventData
+eventDataDecoderForEventType eventType =
   case eventType of
     "TextualEntityUpdated" ->
       textualEntityUpdatedEventDataDecoder
@@ -42,8 +47,8 @@ decodeEventData eventType =
 
 textualEntityUpdatedEventDataDecoder : Decoder EventData
 textualEntityUpdatedEventDataDecoder =
-  object1 textualEntityUpdatedEventData ( "data" := string )
+  object2 textualEntityUpdatedEventData ( "entityId" := string ) ( "text" := string )
 
 numericEntityUpdatedEventDataDecoder : Decoder EventData
 numericEntityUpdatedEventDataDecoder =
-  object1 numericEntityUpdatedEventData ( "data" := int )
+  object2 numericEntityUpdatedEventData ( "entityId" := string ) ( "integer" := int )
