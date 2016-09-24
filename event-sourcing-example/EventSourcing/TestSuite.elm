@@ -2,11 +2,11 @@ module EventSourcing.TestSuite exposing (..)
 
 import EventSourcing.Model exposing (..)
 import EventSourcing.Decode exposing (decodeEvent)
-
 import String
 import Expect
 import Test exposing (..)
 import Test.Runner.Html
+
 
 main : Program Never
 main =
@@ -16,8 +16,10 @@ main =
         |> concat
         |> Test.Runner.Html.run
 
+
 textualEntityUpdatedJson : String
-textualEntityUpdatedJson = """{
+textualEntityUpdatedJson =
+    """{
   "eventId": "abc123",
   "eventType": "TextualEntityUpdated",
   "data": {
@@ -27,8 +29,10 @@ textualEntityUpdatedJson = """{
 }
 """
 
+
 numericEntityUpdatedJson : String
-numericEntityUpdatedJson = """{
+numericEntityUpdatedJson =
+    """{
   "eventId": "def456",
   "eventType": "NumericEntityUpdated",
   "data": {
@@ -38,6 +42,7 @@ numericEntityUpdatedJson = """{
 }
 """
 
+
 testTextualEntityParsing : Test
 testTextualEntityParsing =
     describe "TextualEntity"
@@ -45,10 +50,11 @@ testTextualEntityParsing =
             \() ->
                 decodeEvent textualEntityUpdatedJson
                     |> Expect.equal
-                      { eventId = "abc123"
-                      , data = textualEntityUpdatedEventData "321cba" "my text"
-                      }
+                        { eventId = "abc123"
+                        , data = textualEntityUpdatedEventData "321cba" "my text"
+                        }
         ]
+
 
 testNumericEntityParsing : Test
 testNumericEntityParsing =
@@ -57,7 +63,7 @@ testNumericEntityParsing =
             \() ->
                 decodeEvent numericEntityUpdatedJson
                     |> Expect.equal
-                      { eventId = "def456"
-                      , data = numericEntityUpdatedEventData "654fed" 42
-                      }
+                        { eventId = "def456"
+                        , data = numericEntityUpdatedEventData "654fed" 42
+                        }
         ]
